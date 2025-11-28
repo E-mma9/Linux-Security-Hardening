@@ -23,13 +23,15 @@ Ik gebruik dit om basis Linux-beheer en security hardening te oefenen.
 - Toont pakketten met updates
 
 ## Hoe je het gebruikt
+```
 chmod +x harden-server.sh security-audit.sh
 sudo ./harden-server.sh
+```
 
 
 
-## Skills die ik hiermee oefen
-- Linux systeembeheer (Ubuntu/Debian)
-- Bash-scripting
-- Security hardening (SSH, firewall, logging)
-- Basis monitoring en auditing
+## Author
+Emmanuel Tekle  
+Cybersecurity Student  
+LinkedIn: https://www.linkedin.com/in/emmanuel-tekle-3485b334a/
+```

@@ -1,0 +1,104 @@
+## Testing
+
+This script has been tested on Ubuntu 22.04 LTS with successful hardening.
+
+### Test Results
+- ✓ System packages updated with unattended-upgrades enabled
+- ✓ SSH hardened: root login disabled, port changed to 2222, password auth disabled
+- ✓ UFW firewall enabled with rules: SSH (2222), HTTP (80), HTTPS (443)
+- ✓ Auditd installed and monitoring security events
+
+Output:
+ sudo ./harden-server.sh
+=== Linux Security Hardening Script ===
+This script will harden your Ubuntu/Debian server.
+
+1/5 Updating system
+Hit:1 http://nl.archive.ubuntu.com/ubuntu noble InRelease
+Hit:2 http://nl.archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:3 http://security.ubuntu.com/ubuntu noble-security InRelease
+Hit:4 http://nl.archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:5 https://packages.grafana.com/oss/deb stable InRelease
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+All packages are up to date.
+W: https://packages.grafana.com/oss/deb/dists/stable/InRelease: Key is stored in legacy trusted.gpg keyring (/etc/apt/trusted.gpg), see the DEPRECATION section in apt-key(8) for details.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Calculating upgrade... Done
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+unattended-upgrades is already the newest version (2.9.1+nmu4ubuntu1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Synchronizing state of unattended-upgrades.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable unattended-upgrades
+2/5 Hardening the SSH configurations
+3/5 Configuring the UFW firewall
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+ufw is already the newest version (0.36.2-6).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Firewall is active and enabled on system startup
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+Default outgoing policy changed to 'allow'
+(be sure to update your rules accordingly)
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+4/5 Installing auditd
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+auditd is already the newest version (1:3.1.2-2.1build1.1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Synchronizing state of auditd.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable auditd
+
+Hardening Compleet
+
+Output2:
+project@project:~/Linux-Security-Hardening$ sudo ./Security-audit.sh
+Linux Security Audit
+
+ SSH configuration:
+Port 2222
+PermitRootLogin no
+PasswordAuthentication no
+
+UFW firewall status:
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), deny (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+3000                       ALLOW IN    Anywhere
+2222/tcp                   ALLOW IN    Anywhere
+80/tcp                     ALLOW IN    Anywhere
+443/tcp                    ALLOW IN    Anywhere
+3000 (v6)                  ALLOW IN    Anywhere (v6)
+2222/tcp (v6)              ALLOW IN    Anywhere (v6)
+80/tcp (v6)                ALLOW IN    Anywhere (v6)
+443/tcp (v6)               ALLOW IN    Anywhere (v6)
+
+
+ Failed SSH login attempts (last 24h):
+2025-11-25T07:49:43.633399+00:00 project sshd[2376]: Failed password for project from 192.168.159.1 port 30414 ssh2
+2025-11-25T08:04:32.984095+00:00 project sshd[4581]: Failed password for project from 192.168.159.1 port 30543 ssh2
+2025-11-25T11:15:51.240706+00:00 project sshd[2377]: Failed password for project from 192.168.159.1 port 32646 ssh2
+
+ Packages with available updates:
+Listing...
+
+ Audit Complete
+

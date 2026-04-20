@@ -34,4 +34,3 @@ sudo ./harden-server.sh
 Emmanuel Tekle  
 Cybersecurity Student  
 LinkedIn: https://www.linkedin.com/in/emmanuel-tekle-3485b334a/
-```
